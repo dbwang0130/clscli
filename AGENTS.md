@@ -1,6 +1,6 @@
-# AGENTS.md file
+# AGENTS.md
 
-## Dev environment tips
-- Use golang
-- Use makefile to build
+## Dev environment
+- Use Go
+- Use Makefile to build
 - Use [tencentcloud-sdk-go](https://github.com/TencentCloud/tencentcloud-sdk-go)
