@@ -1,0 +1,23 @@
+# Binary
+clscli
+clscli.exe
+
+# Pack output
+dist/
+
+# Output / user data
+*.csv
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Go
+/vendor/
