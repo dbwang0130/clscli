@@ -11,13 +11,18 @@ metadata:
 检索分析腾讯云CLS日志
 
 ## Setup
-1. 获取凭证与地域：https://cloud.tencent.com/document/api/614/56474
-2. 设置环境变量（与腾讯云 API 公共参数一致）：
+1. 安装 clscli（Homebrew）：
+    ```bash
+    brew tap dbwang0130/clscli
+    brew install dbwang0130/clscli/clscli
+    ```
+2. 获取凭证与地域：https://cloud.tencent.com/document/api/614/56474
+3. 设置环境变量（与腾讯云 API 公共参数一致）：
     ```bash
     export TENCENTCLOUD_SECRET_ID="your-secret-id"
     export TENCENTCLOUD_SECRET_KEY="your-secret-key"
     ```
-3. 地域通过命令行参数 `--region` 指定（如 ap-guangzhou）。
+4. 地域通过命令行参数 `--region` 指定（如 ap-guangzhou）。
 
 ## Usage
 
