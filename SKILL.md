@@ -21,6 +21,29 @@ metadata:
 
 ## Usage
 
+!IMPORTANT: 如果不知道日志TOPIC，先查询topics列表。
+
+### List log topics
+List topics in a region to determine which `--region` and topic ID to use for query/context.
+
+```bash
+clscli topics --region <region> [--topic-name name] [--logset-name name] [--logset-id id] [--limit 20] [--offset 0]
+```
+示例：`--output=json`、`--output=csv`、`-o topics.csv`
+
+参数说明
+| 参数 | 必选 | 说明 |
+|------|------|------|
+| --region | 是 | CLS 地域，如 ap-guangzhou |
+| --topic-name | 否 | 按主题名称过滤（模糊匹配） |
+| --logset-name | 否 | 按日志集名称过滤（模糊匹配） |
+| --logset-id | 否 | 按日志集 ID 过滤 |
+| --limit | 否 | 单页条数，默认 20，最大 100 |
+| --offset | 否 | 分页偏移，默认 0 |
+| --output, -o | 否 | 输出：json、csv，或文件路径 |
+
+输出列：Region, TopicId, TopicName, LogsetId, CreateTime, StorageType。
+
 ### Get log by query
 ```bash
 clscli query -q "[检索条件] | [SQL 语句]" --region <region> -t <TopicId> --last 1h

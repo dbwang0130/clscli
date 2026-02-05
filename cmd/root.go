@@ -17,7 +17,7 @@ var (
 var rootCmd = &cobra.Command{
 	Use:   "clscli",
 	Short: "CLI for Tencent Cloud CLS (Cloud Log Service)",
-	Long:  "Retrieve and analyze CLS logs: query (-q), context (-c).",
+	Long:  "Retrieve and analyze CLS logs: topics (list), query (-q), context.",
 }
 
 func init() {

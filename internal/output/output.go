@@ -130,6 +130,55 @@ func (ow *Writer) WriteTableHeaderLogContext() error {
 	return ow.csvw.Write([]string{"BTime", "PkgId", "PkgLogId", "Content"})
 }
 
+// WriteTopicInfo writes a single topic row; region is the CLS region for this topic.
+func (ow *Writer) WriteTopicInfo(region string, topic *cls.TopicInfo) error {
+	topicId := ""
+	if topic.TopicId != nil {
+		topicId = *topic.TopicId
+	}
+	topicName := ""
+	if topic.TopicName != nil {
+		topicName = *topic.TopicName
+	}
+	logsetId := ""
+	if topic.LogsetId != nil {
+		logsetId = *topic.LogsetId
+	}
+	createTime := ""
+	if topic.CreateTime != nil {
+		createTime = *topic.CreateTime
+	}
+	storageType := ""
+	if topic.StorageType != nil {
+		storageType = *topic.StorageType
+	}
+	if ow.format == "json" {
+		obj := map[string]interface{}{
+			"Region":      region,
+			"TopicId":     topicId,
+			"TopicName":   topicName,
+			"LogsetId":    logsetId,
+			"CreateTime":  createTime,
+			"StorageType": storageType,
+		}
+		b, err := json.Marshal(obj)
+		if err != nil {
+			return err
+		}
+		_, err = ow.bw.Write(append(b, '\n'))
+		return err
+	}
+	return ow.csvw.Write([]string{region, topicId, topicName, logsetId, createTime, storageType})
+}
+
+// WriteTableHeaderTopics writes CSV header for topic list.
+func (ow *Writer) WriteTableHeaderTopics() error {
+	if ow.format != "csv" {
+		return nil
+	}
+	return ow.csvw.Write([]string{"Region", "TopicId", "TopicName", "LogsetId", "CreateTime", "StorageType"})
+}
+
 // WriteAnalysisRecords writes SQL analysis result (columns + records).
 func (ow *Writer) WriteAnalysisRecords(columns []*cls.Column, records []*string) error {
 	if ow.format == "json" {
